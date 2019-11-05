@@ -1,0 +1,32 @@
+Philosopher = [T,H,E] {
+	 etat = 3;
+	 init = 0;
+	 0=T;
+	 1=H;
+	 2=E;
+
+	 0 -> 1 [H];
+	 1 -> 2 [E];
+	 2 -> 0 [T];
+};;
+
+
+
+table = <Philosopher p0,Philosopher p1,Philosopher p2> {
+
+	<_,_,_>;
+	<T,T,T>;
+	<_,E,_>;
+	<_,_,E>;
+	<E,_,_>;
+	<_,_,_>;
+	<_,_,_>;
+	<_,_,_>;
+
+
+
+};;
+solution = systeme ->  j5.p4 ;;
+
+
+todot d.dot solution;;
