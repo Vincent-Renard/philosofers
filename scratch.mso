@@ -5,28 +5,53 @@ Philosopher = [T,H,E] {
 	 1=H;
 	 2=E;
 
-	 0 -> 1 [H];
-	 1 -> 2 [E];
-	 2 -> 0 [T];
+	 0 -> 1 [faim];
+	 1 -> 2 [mange];
+	 2 -> 0 [pense];
+
+	 0 -> 0 [restepense];
+
+	 1 -> 1 [restepaspense];
+	 2 -> 2 [restepaspense];
+};;
+
+Canal = [N,L,R] {
+	etat = 3;
+	init = 0;
+	0=N;
+	1=L;
+	2=R;
+
+	0 -> 0 [supprL];
+	0 -> 0 [supprR];
+
+	0 -> 1 [L];
+	0 -> 2 [R];
+
+	1 -> 0 [supprL];
+	2 -> 0 [supprR];
+
+	0 -> 0 [resteLouN];
+	0 -> 0 [resteRouN];
+
+	1 -> 1 [resteLouN];
+
+	2 -> 2 [resteRouN];
+};;
+
+table = <Philosopher p0,Philosopher p1,Canal c0,Canal c1> {
+
+	<faim,restepense,_,_>;
+	<faim,restepaspense,L,R>;
+	<restepense,faim,_,_>;
+	<restepaspense,faim,R,L>;
+
+	<mange,_,resteRouN,resteLouN>;
+	<_,mange,resteLouN,resteRouN>;
+
+	<pense,_,supprR,supprL>;
+	<_,pense,supprL,supprR>;
 };;
 
 
-
-table = <Philosopher p0,Philosopher p1,Philosopher p2> {
-
-	<_,_,_>;
-	<T,T,T>;
-	<_,E,_>;
-	<_,_,E>;
-	<E,_,_>;
-	<_,_,_>;
-	<_,_,_>;
-	<_,_,_>;
-
-
-
-};;
-solution = systeme ->  j5.p4 ;;
-
-
-todot d.dot solution;;
+todot philosopher.dot table;;

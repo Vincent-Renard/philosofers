@@ -1,0 +1,27 @@
+digraph system {
+_0[label="", shape=none ];
+_0->0;
+149 [label= "149 [c0.L, c1.R, p0.H, p1.H]"];
+101 [label= "101 [c0.R, c1.L, p0.H, p1.H]"];
+153 [label= "153 [c0.L, c1.R, p0.H, p1.E]"];
+1 [label= "1 [c0.N, c1.N, p0.H, p1.T]"];
+102 [label= "102 [c0.R, c1.L, p0.E, p1.H]"];
+2 [label= "2 [c0.N, c1.N, p0.E, p1.T]"];
+4 [label= "4 [c0.N, c1.N, p0.T, p1.H]"];
+8 [label= "8 [c0.N, c1.N, p0.T, p1.E]"];
+0 [label= "0 [c0.N, c1.N, p0.T, p1.T]"];
+149->153 [label= ""];
+1->101 [label= ""];
+153->1 [label= ""];
+101->102 [label= ""];
+1->2 [label= ""];
+4->149 [label= ""];
+8->153 [label= ""];
+0->1 [label= ""];
+2->102 [label= ""];
+102->4 [label= ""];
+2->0 [label= ""];
+4->8 [label= ""];
+0->4 [label= ""];
+8->0 [label= ""];
+}
