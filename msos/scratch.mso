@@ -53,5 +53,31 @@ table = <Philosopher p0,Philosopher p1,Canal c0,Canal c1> {
 	<_,pense,supprL,supprR>;
 };;
 
+table3 = <Philosopher p0,Philosopher p1,Philosopher p2,Canal c0,Canal c1,Canal c2> {
+	<faim,restepense,restepense,_,_,_>;
+	<faim,restepaspense,restepense,L,_,_>;
+	<faim,restepense,restepaspense,_,_,R>;
+	<faim,restepaspense,restepaspense,L,_,R>;
+
+	<restepense,faim,restepense,_,_,_>;
+	<restepaspense,faim,restepense,R,_,_>;
+	<restepense,faim,restepaspense,_,L,_>;
+	<restepaspense,faim,restepaspense,R,L,_>;
+
+	<restepense,restepense,faim,_,_,_>;
+	<restepaspense,restepense,faim,_,_,L>;
+	<restepense,restepaspense,faim,_,R,_>;
+	<restepaspense,restepaspense,faim,_,R,L>;
+
+	<mange,_,_,resteRouN,_,resteLouN>;
+	<_,mange,_,resteLouN,resteRouN,_>;
+	<_,_,mange,_,resteLouN,resteRouN>;
+
+	<pense,_,_,supprR,_,supprL>;
+	<_,pense,_,supprL,supprR,_>;
+	<_,_,pense,_,supprL,supprR>;
+};;
+
 
 todot philosopher.dot table;;
+todot philosopher3.dot table3;;
