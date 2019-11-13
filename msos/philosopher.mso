@@ -22,20 +22,19 @@ Canal = [N,L,R] {
 	1=L;
 	2=R;
 
-	0 -> 0 [delL];
-	0 -> 0 [delR];
-
 	0 -> 1 [addL];
 	0 -> 2 [addR];
 
+	0 -> 0 [delL];
 	1 -> 0 [delL];
+
+	0 -> 0 [delR];
 	2 -> 0 [delR];
 
 	0 -> 0 [remainNL];
-	0 -> 0 [remainNR];
-
 	1 -> 1 [remainNL];
 
+	0 -> 0 [remainNR];
 	2 -> 2 [remainNR];
 };;
 
