@@ -5,14 +5,14 @@ Philosopher = [T,H,E] {
 	 1=H;
 	 2=E;
 
-	 0 -> 1 [faim];
-	 1 -> 2 [mange];
-	 2 -> 0 [pense];
+	 0 -> 1 [goH];
+	 1 -> 2 [goE];
+	 2 -> 0 [goT];
 
-	 0 -> 0 [restepense];
+	 0 -> 0 [remainT];
 
-	 1 -> 1 [restepaspense];
-	 2 -> 2 [restepaspense];
+	 1 -> 1 [remainHE];
+	 2 -> 2 [remainHE];
 };;
 
 Canal = [N,L,R] {
@@ -22,60 +22,60 @@ Canal = [N,L,R] {
 	1=L;
 	2=R;
 
-	0 -> 0 [supprL];
-	0 -> 0 [supprR];
+	0 -> 0 [delL];
+	0 -> 0 [delR];
 
-	0 -> 1 [L];
-	0 -> 2 [R];
+	0 -> 1 [addL];
+	0 -> 2 [addR];
 
-	1 -> 0 [supprL];
-	2 -> 0 [supprR];
+	1 -> 0 [delL];
+	2 -> 0 [delR];
 
-	0 -> 0 [resteLouN];
-	0 -> 0 [resteRouN];
+	0 -> 0 [remainNL];
+	0 -> 0 [remainNR];
 
-	1 -> 1 [resteLouN];
+	1 -> 1 [remainNL];
 
-	2 -> 2 [resteRouN];
+	2 -> 2 [remainNR];
 };;
 
 table = <Philosopher p0,Philosopher p1,Canal c0,Canal c1> {
 
-	<faim,restepense,_,_>;
-	<faim,restepaspense,L,R>;
-	<restepense,faim,_,_>;
-	<restepaspense,faim,R,L>;
+	<goH,remainT,_,_>;
+	<goH,remainHE,addL,addR>;
+	<remainT,goH,_,_>;
+	<remainHE,goH,addR,addL>;
 
-	<mange,_,resteRouN,resteLouN>;
-	<_,mange,resteLouN,resteRouN>;
+	<goE,_,remainNR,remainNL>;
+	<_,goE,remainNL,remainNR>;
 
-	<pense,_,supprR,supprL>;
-	<_,pense,supprL,supprR>;
+	<goT,_,delR,delL>;
+	<_,goT,delL,delR>;
 };;
 
 table3 = <Philosopher p0,Philosopher p1,Philosopher p2,Canal c0,Canal c1,Canal c2> {
-	<faim,restepense,restepense,_,_,_>;
-	<faim,restepaspense,restepense,L,_,_>;
-	<faim,restepense,restepaspense,_,_,R>;
-	<faim,restepaspense,restepaspense,L,_,R>;
+	<goH,remainT,remainT,_,_,_>;
+	<goH,remainHE,remainT,addL,_,_>;
+	<goH,remainT,remainHE,_,_,addR>;
+	<goH,remainHE,remainHE,addL,_,addR>;
 
-	<restepense,faim,restepense,_,_,_>;
-	<restepaspense,faim,restepense,R,_,_>;
-	<restepense,faim,restepaspense,_,L,_>;
-	<restepaspense,faim,restepaspense,R,L,_>;
+	<remainT,goH,remainT,_,_,_>;
+	<remainHE,goH,remainT,addR,_,_>;
+	<remainT,goH,remainHE,_,addL,_>;
+	<remainHE,goH,remainHE,addR,addL,_>;
 
-	<restepense,restepense,faim,_,_,_>;
-	<restepaspense,restepense,faim,_,_,L>;
-	<restepense,restepaspense,faim,_,R,_>;
-	<restepaspense,restepaspense,faim,_,R,L>;
+	<remainT,remainT,goH,_,_,_>;
+	<remainHE,remainT,goH,_,_,addL>;
+	<remainT,remainHE,goH,_,addR,_>;
+	<remainHE,remainHE,goH,_,addR,addL>;
 
-	<mange,_,_,resteRouN,_,resteLouN>;
-	<_,mange,_,resteLouN,resteRouN,_>;
-	<_,_,mange,_,resteLouN,resteRouN>;
+	<goE,_,_,remainNR,_,remainNL>;
+	<_,goE,_,remainNL,remainNR,_>;
+	<_,_,goE,_,remainNL,remainNR>;
 
-	<pense,_,_,supprR,_,supprL>;
-	<_,pense,_,supprL,supprR,_>;
-	<_,_,pense,_,supprL,supprR>;
+	<goT,_,_,delR,_,delL>;
+	<_,goT,_,delL,delR,_>;
+	<_,_,goT,_,delL,delR>;
 };;
 
 
