@@ -38,10 +38,10 @@ Canal = [N,L,R] {
 	2 -> 2 [remainNR];
 };;
 
-table = <Philosopher p0,Philosopher p1,Canal c0,Canal c1> {
-
+table2 = <Philosopher p0,Philosopher p1,Canal c0,Canal c1> {
 	<goH,remainT,_,_>;
 	<goH,remainHE,addL,addR>;
+
 	<remainT,goH,_,_>;
 	<remainHE,goH,addR,addL>;
 
@@ -78,5 +78,5 @@ table3 = <Philosopher p0,Philosopher p1,Philosopher p2,Canal c0,Canal c1,Canal c
 };;
 
 
-todot philosopher.dot table;;
+todot philosopher2.dot table2;;
 todot philosopher3.dot table3;;
