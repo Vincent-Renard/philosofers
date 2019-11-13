@@ -38,7 +38,21 @@ Canal = [N,L,R] {
 	2 -> 2 [remainNR];
 };;
 
-table2 = <Philosopher p0,Philosopher p1,Canal c0,Canal c1> {
+table2c1 = <Philosopher p0,Philosopher p1,Canal c0> {
+	<goH,remainT,_>;
+	<goH,remainHE,addR>;
+
+	<remainT,goH,_>;
+	<remainHE,goH,addL>;
+
+	<goE,_,remainNL>;
+	<_,goE,remainNR>;
+
+	<goT,_,delL>;
+	<_,goT,delR>;
+};;
+
+table2c2 = <Philosopher p0,Philosopher p1,Canal c0,Canal c1> {
 	<goH,remainT,_,_>;
 	<goH,remainHE,addL,addR>;
 
@@ -110,6 +124,7 @@ table4 = <Philosopher p0,Philosopher p1,Philosopher p2,Philosopher p3,Canal c0,C
 };;
 
 
-todot philosopher2.dot table2;;
+todot philosopher2c1.dot table2c1;;
+todot philosopher2c2.dot table2c2;;
 todot philosopher3.dot table3;;
 todot Philosopher4.dot table4;;
