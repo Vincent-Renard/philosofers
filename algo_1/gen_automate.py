@@ -1,4 +1,4 @@
-#! /usr/bin/env pypy3
+#! /usr/local/bin/python3
 # coding: utf-8
 
 from sys import argv
@@ -6,7 +6,7 @@ import itertools
 
 if __name__ == '__main__':
 
-    nbr_philos = 4  # argv[1]
+    nbr_philos = int(argv[1]) #TODO metre mode d'emploi si l'argument n'est pas fourni
     sys_philo="P = [T,H,E] {\netat = 3;\ninit = 0;\n0=T;\n1=H;\n2=E;\n0 -> 1 [goH];\n1 -> 2 [goE];\n2 -> 0 [goT];\n0 -> 0 [remainT];\n1 -> 1 [remainHE];\n2 -> 2 [remainHE];\n};;\n"
     sys_canal="C = [N,L,R] {\netat = 3;\ninit = 0;\n0=N;\n1=L;\n2=R;\n0 -> 1 [addL];\n0 -> 2 [addR];\n0 -> 0 [delL];\n1 -> 0 [delL];\n0 -> 0 [delR];\n2 -> 0 [delR];\n0 -> 0 [remainNL];\n1 -> 1 [remainNL];\n0 -> 0 [remainNR];\n2 -> 2 [remainNR];\n};;\n"
     state_HUNGRY = 'HUNGRY'
