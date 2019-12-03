@@ -68,8 +68,8 @@ table2c2 = <Philosopher p0,Philosopher p1,Canal c0,Canal c1> {
 
 table3 = <Philosopher p0,Philosopher p1,Philosopher p2,Canal c0,Canal c1,Canal c2> {
 	<goH,remainT,remainT,_,_,_>;
-	<goH,remainHE,remainT,addL,_,_>;
-	<goH,remainT,remainHE,_,_,addR>;
+	<goH,remainHE,remainT,addL,_,_>;//HE = faim ou mange
+	<goH,remainT,remainHE,_,_,addR>;//T = Thinking
 	<goH,remainHE,remainHE,addL,_,addR>;
 
 	<remainT,goH,remainT,_,_,_>;
@@ -95,22 +95,22 @@ table4 = <Philosopher p0,Philosopher p1,Philosopher p2,Philosopher p3,Canal c0,C
 	<goH,remainT,_,remainT,_,_,_,_>;
 	<goH,remainHE,_,remainT,addL,_,_,_>;
 	<goH,remainT,_,remainHE,_,_,_,addR>;
-	<goH,remainHE,_,remainHE,addL,_,_,addR>;
+	*<goH,remainHE,_,remainHE,addL,_,_,addR>;
 
 	<remainT,goH,remainT,_,_,_,_,_>;
 	<remainHE,goH,remainT,_,addR,_,_,_>;
 	<remainT,goH,remainHE,_,_,addL,_,_>;
-	<remainHE,goH,remainHE,_,addR,addL,_,_>;
+	*<remainHE,goH,remainHE,_,addR,addL,_,_>;
 
 	<_,remainT,goH,remainT,_,_,_,_>;
 	<_,remainHE,goH,remainT,_,addR,_,_>;
 	<_,remainT,goH,remainHE,_,_,addL,_>;
-	<_,remainHE,goH,remainHE,_,addR,addL,_>;
+	*<_,remainHE,goH,remainHE,_,addR,addL,_>;
 
 	<remainT,_,remainT,goH,_,_,_,_>;
 	<remainHE,_,remainT,goH,_,_,_,addL>;
 	<remainT,_,remainHE,goH,_,_,addR,_>;
-	<remainHE,_,remainHE,goH,_,_,addR,addL>;
+	*<remainHE,_,remainHE,goH,_,_,addR,addL>;
 
 	<goE,_,_,_,remainNR,_,_,remainNL>;
 	<_,goE,_,_,remainNL,remainNR,_,_>;
