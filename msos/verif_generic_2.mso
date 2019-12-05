@@ -1,0 +1,31 @@
+// Equites
+systeme += equiteForte <- AG(p0.H -> AF(p0.E));;
+systeme += equiteFaible <- AG(p0.H -> EF(p0.E));;
+
+// Etat bloquant
+systeme += dead <- AX(false);;
+
+
+// BUGS
+
+// P1 Seuls les philosophers ayant faim ont des flèches vers l'extérieur
+systeme += bug <- !p0.H && c0.R;;
+
+// P2 Seuls les non penseurs ont des flèches vers eux
+systeme += bug <- p0.T && c0.L;;
+// Si cyclique rajouté c1.R
+
+// P3 Si deux voisins pas en train de penser, l'c entre eux a forcement une flèche
+systeme += bug <- !p0.T && !p1.T && c0.N;;
+
+// P4
+systeme += bug <- c0.R && c1.R;;
+systeme += bug <- c0.L && c1.L;;
+
+// Perso
+systeme += bug <- p0.E && p1.E;;
+
+// reduit = systeme | dead;;
+// reduit = systeme | !equiteForte;;
+// reduit = systeme | !equiteFaible;;
+reduit = systeme | bug;;
