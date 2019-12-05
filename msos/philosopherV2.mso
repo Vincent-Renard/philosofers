@@ -1,0 +1,56 @@
+Philosopher = [T,E] {
+	 etat = 2;
+	 init = 0;
+	 0=T;
+	 1=E;
+
+	 0 -> 1 [E];
+	 1 -> 0 [T];
+};;
+
+Mutex = [P,V] {
+	etat = 2;
+	init = 0;
+	0=P;
+	1=V;
+
+	0 -> 1 [V];
+	1 -> 0 [P];
+};;
+
+table3 = <Philosopher p0,Philosopher p1,Philosopher p2,Mutex m0,Mutex m1,Mutex m2,Mutex m3> {
+    <E,_,_,V,V,_,_>;
+    <_,E,_,_,V,V,_>;
+    <_,_,E,_,_,V,V>;
+    
+    <T,_,_,P,P,_,_>;
+    <_,T,_,_,P,P,_>;
+    <_,_,T,_,_,P,P>;
+};;
+
+table4 = <Philosopher p0,Philosopher p1,Philosopher p2,Philosopher p3,Mutex m0,Mutex m1,Mutex m2,Mutex m3,Mutex m4> {
+    <E,_,_,_,V,V,_,_,_>;
+    <_,E,_,_,_,V,V,_,_>;
+    <_,_,E,_,_,_,V,V,_>;
+    <_,_,_,E,_,_,_,V,V>;
+    
+    <T,_,_,_,P,P,_,_,_>;
+    <_,T,_,_,_,P,P,_,_>;
+    <_,_,T,_,_,_,P,P,_>;
+    <_,_,_,T,_,_,_,P,P>;
+};;
+
+table3ordonne = <Mutex m0,Philosopher p0,Mutex m1,Philosopher p1,Mutex m2,Philosopher p2,Mutex m3> {
+    <V,E,V,_,_,_,_>;
+    <_,_,V,E,V,_,_>;
+    <_,_,_,_,V,E,V>;
+    
+    <P,T,P,_,_,_,_>;
+    <_,_,P,T,P,_,_>;
+    <_,_,_,_,P,T,P>;
+};;
+
+todot philosopher3V2.dot table3;;
+todot philosopher4V2.dot table4;;
+
+todot philosopher3V2ordonne table3ordonne;;
