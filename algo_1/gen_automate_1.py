@@ -1,12 +1,59 @@
 #! /usr/local/bin/python3
 # coding: utf-8
+
 from sys import argv
 import itertools
+
 if __name__ == '__main__':
     nbr_philos = int(argv[1]) #TODO metre mode d'emploi si l'argument n'est pas fourni
-    nbr_canaux = nbr_philos-1
-    sys_philo="P = [T,H,E] {\netat = 3;\ninit = 0;\n0=T;\n1=H;\n2=E;\n0 -> 1 [goH];\n1 -> 2 [goE];\n2 -> 0 [goT];\n0 -> 0 [remainT];\n1 -> 1 [remainHE];\n2 -> 2 [remainHE];\n};;\n"
-    sys_canal="C = [N,L,R] {\netat = 3;\ninit = 0;\n0=N;\n1=L;\n2=R;\n0 -> 1 [addL];\n0 -> 2 [addR];\n0 -> 0 [delL];\n1 -> 0 [delL];\n0 -> 0 [delR];\n2 -> 0 [delR];\n0 -> 0 [remainNL];\n1 -> 1 [remainNL];\n0 -> 0 [remainNR];\n2 -> 2 [remainNR];\n};;\n"
+    nbr_canaux = nbr_philos - 1
+
+    GO_H = "goH"
+    GO_E = "goE"
+    GO_T = "goT"
+    REMAIN_T = "remainT"
+    REMAIN_HE = "remainHE"
+    ADD_L = "addL"
+    ADD_R = "addR"
+    DEL_L = "delL"
+    DEL_R = "delR"
+    REMAIN_NL = "remainNL"
+    REMAIN_NR = "remainNR"
+
+    sys_philo=f"""
+P = [T,H,E] \{
+etat = 3;
+init = 0;
+0=T;
+1=H;
+2=E;
+0 -> 1 [{GO_H}];
+1 -> 2 [{GO_E}];
+2 -> 0 [{GO_T}];
+0 -> 0 [{REMAIN_T}];
+1 -> 1 [{REMAIN_HE}];
+2 -> 2 [{REMAIN_HE}];
+\};;
+"""
+    sys_canal="""
+C = [N,L,R] {
+etat = 3;
+init = 0;
+0=N;
+1=L;
+2=R;
+0 -> 1 [addL];
+0 -> 2 [addR];
+0 -> 0 [delL];
+1 -> 0 [delL];
+0 -> 0 [delR];
+2 -> 0 [delR];
+0 -> 0 [remainNL];
+1 -> 1 [remainNL];
+0 -> 0 [remainNR];
+2 -> 2 [remainNR];
+};;
+"""
     state_HUNGRY = 'HUNGRY'
     state_THINK = 'THINK'
     state_EAT = 'EAT'
