@@ -21,7 +21,7 @@ if __name__ == '__main__':
     REMAIN_NR = "remainNR"
 
     sys_philo=f"""
-P = [T,H,E] \{
+P = [T,H,E] {{
 etat = 3;
 init = 0;
 0=T;
@@ -33,7 +33,7 @@ init = 0;
 0 -> 0 [{REMAIN_T}];
 1 -> 1 [{REMAIN_HE}];
 2 -> 2 [{REMAIN_HE}];
-\};;
+}};;
 """
     sys_canal="""
 C = [N,L,R] {
