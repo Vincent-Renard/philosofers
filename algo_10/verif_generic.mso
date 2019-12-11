@@ -1,0 +1,10 @@
+// Equites
+systeme += equiteForte <- AG(p0.H -> AF(p0.E));;
+systeme += equiteFaible <- AG(p0.H -> EF(p0.E));;
+
+// Etat bloquant
+systeme += dead <- AX(false);;
+
+reduit = systeme | dead;;
+reduit = systeme | !equiteForte;;
+reduit = systeme | !equiteFaible;;
