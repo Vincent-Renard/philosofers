@@ -6,11 +6,11 @@ import itertools
 
 if __name__ == '__main__':
     nbr_philos = int(argv[1]) #TODO metre mode d'emploi si l'argument n'est pas fourni
-    nbr_canaux = nbr_philos
+    nbr_canaux = nbr_philos - 1
 
-    GO_H = "goH"
-    GO_E = "goE"
-    GO_T = "goT"
+    GO_H = "Faim"
+    GO_E = "Repas"
+    GO_T = "Reflexion"
     REMAIN_T = "remainT"
     REMAIN_HE = "remainHE"
     ADD_L = "addL"
@@ -63,29 +63,22 @@ init = 0;
     s += ",".join(["P p" + str(i) for i in range(nbr_philos)]) + "," + ",".join(
         ["C c" + str(i) for i in range(nbr_canaux)]) + "> {\n"
     for philo in range(nbr_philos):
-        s += "<" + ",".join(["goH" if i == philo else "remainT" if (i - 1) % nbr_philos == philo or (i + 1) % nbr_philos == philo else "_" for i in range(nbr_philos)])
+        s += "<" + ",".join(["goH" if i == philo else "remainT" if (i - 1) == philo or (i + 1) == philo else "_" for i in range(nbr_philos)])
         s += "," + ",".join(["_" for i in range(nbr_canaux)]) + ">;\n"
-
-        s += "<" + ",".join(["goH" if i == philo else "remainHE" if (i - 1) % nbr_philos == philo else "remainT" if (i + 1) % nbr_philos == philo else "_" for i in range(nbr_philos)])
+        s += "<" + ",".join(["goH" if i == philo else "remainHE" if (i - 1) == philo else "remainT" if (i + 1) == philo else "_" for i in range(nbr_philos)])
         s += "," + ",".join(["addL" if i == philo else "_" for i in range(nbr_canaux)]) + ">;\n"
-
-        s += "<" + ",".join(["goH" if i == philo else "remainT" if (i - 1) % nbr_philos == philo else "remainHE" if (i + 1) % nbr_philos == philo else "_" for i in range(nbr_philos)])
-        s += "," + ",".join(["addR" if (i + 1) % nbr_canaux == philo else "_" for i in range(nbr_canaux)]) + ">;\n"
-
-        s += "<" + ",".join(["goH" if i == philo else "remainHE" if (i - 1) % nbr_philos == philo or (i + 1) % nbr_philos == philo else "_" for i in range(nbr_philos)])
-
-        s += "," + ",".join(["addL" if i == philo else "addR" if (i + 1) % nbr_canaux == philo else "_" for i in range(nbr_canaux)]) + ">;\n"
+        s += "<" + ",".join(["goH" if i == philo else "remainT" if (i - 1) == philo else "remainHE" if (i + 1) == philo else "_" for i in range(nbr_philos)])
+        s += "," + ",".join(["addR" if (i + 1) == philo else "_" for i in range(nbr_canaux)]) + ">;\n"
+        s += "<" + ",".join(["goH" if i == philo else "remainHE" if (i - 1) == philo or (i + 1) == philo else "_" for i in range(nbr_philos)])
+        s += "," + ",".join(["addL" if i == philo else "addR" if (i + 1) == philo else "_" for i in range(nbr_canaux)]) + ">;\n"
         s += "\n"
-
     for i in range(nbr_philos):
         s += "<" + ",".join(["goE" if j == i else "_" for j in range(nbr_philos)])
-        s += "," + ",".join(["remainNL" if (i - 1) % nbr_canaux == j else "remainNR" if i == j else "_" for j in range(nbr_canaux)]) + ">;\n"
+        s += "," + ",".join(["remainNL" if (i - 1) == j else "remainNR" if i == j else "_" for j in range(nbr_canaux)]) + ">;\n"
     s += "\n"
-
     for i in range(nbr_philos):
         s += "<" + ",".join(["goT" if j == i else "_" for j in range(nbr_philos)])
-        s += "," + ",".join(["delL" if (i - 1) % nbr_canaux == j else "delR" if i == j else "_" for j in range(nbr_canaux)]) + ">;\n"
-
+        s += "," + ",".join(["delL" if (i - 1) == j else "delR" if i == j else "_" for j in range(nbr_canaux)]) + ">;\n"
     s += "};;\n"
     s+="todot verif_test_"+str(nbr_philos)+"_"+str(nbr_canaux)+".dot systeme;;\n"
     print(s)
