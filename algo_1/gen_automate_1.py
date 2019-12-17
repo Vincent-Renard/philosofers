@@ -35,50 +35,52 @@ init = 0;
 2 -> 2 [{REMAIN_HE}];
 }};;
 """
-    sys_canal="""
-C = [N,L,R] {
+    sys_canal=f"""
+C = [N,L,R] {{
 etat = 3;
 init = 0;
 0=N;
 1=L;
 2=R;
-0 -> 1 [addL];
-0 -> 2 [addR];
-0 -> 0 [delL];
-1 -> 0 [delL];
-0 -> 0 [delR];
-2 -> 0 [delR];
-0 -> 0 [remainNL];
-1 -> 1 [remainNL];
-0 -> 0 [remainNR];
-2 -> 2 [remainNR];
-};;
+0 -> 1 [{ADD_L}];
+0 -> 2 [{ADD_R}];
+0 -> 0 [{DEL_L}];
+1 -> 0 [{DEL_L}];
+0 -> 0 [{DEL_R}];
+2 -> 0 [{DEL_R}];
+0 -> 0 [{REMAIN_NL}];
+1 -> 1 [{REMAIN_NL}];
+0 -> 0 [{REMAIN_NR}];
+2 -> 2 [{REMAIN_NR}];
+}};;
 """
-    state_HUNGRY = 'HUNGRY'
-    state_THINK = 'THINK'
-    state_EAT = 'EAT'
     s=""
     s+=sys_philo+sys_canal
     s += "systeme = <"
     s += ",".join(["P p" + str(i) for i in range(nbr_philos)]) + "," + ",".join(
         ["C c" + str(i) for i in range(nbr_canaux)]) + "> {\n"
     for philo in range(nbr_philos):
-        s += "<" + ",".join(["goH" if i == philo else "remainT" if (i - 1) == philo or (i + 1) == philo else "_" for i in range(nbr_philos)])
+        s += "<" + ",".join([GO_H if i == philo else REMAIN_T if (i - 1) % nbr_philos == philo or (i + 1) % nbr_philos == philo else "_" for i in range(nbr_philos)])
         s += "," + ",".join(["_" for i in range(nbr_canaux)]) + ">;\n"
-        s += "<" + ",".join(["goH" if i == philo else "remainHE" if (i - 1) == philo else "remainT" if (i + 1) == philo else "_" for i in range(nbr_philos)])
-        s += "," + ",".join(["addL" if i == philo else "_" for i in range(nbr_canaux)]) + ">;\n"
-        s += "<" + ",".join(["goH" if i == philo else "remainT" if (i - 1) == philo else "remainHE" if (i + 1) == philo else "_" for i in range(nbr_philos)])
-        s += "," + ",".join(["addR" if (i + 1) == philo else "_" for i in range(nbr_canaux)]) + ">;\n"
-        s += "<" + ",".join(["goH" if i == philo else "remainHE" if (i - 1) == philo or (i + 1) == philo else "_" for i in range(nbr_philos)])
-        s += "," + ",".join(["addL" if i == philo else "addR" if (i + 1) == philo else "_" for i in range(nbr_canaux)]) + ">;\n"
+
+        s += "<" + ",".join([GO_H if i == philo else REMAIN_HE if (i - 1) % nbr_philos == philo else REMAIN_T if (i + 1) % nbr_philos == philo else "_" for i in range(nbr_philos)])
+        s += "," + ",".join([ADD_L if i == philo else "_" for i in range(nbr_canaux)]) + ">;\n"
+
+        s += "<" + ",".join([GO_H if i == philo else REMAIN_T if (i - 1) % nbr_philos == philo else REMAIN_HE if (i + 1) % nbr_philos == philo else "_" for i in range(nbr_philos)])
+        s += "," + ",".join([ADD_R if (i + 1) % nbr_canaux == philo else "_" for i in range(nbr_canaux)]) + ">;\n"
+
+        s += "<" + ",".join([GO_H if i == philo else REMAIN_HE if (i - 1) % nbr_philos == philo or (i + 1) % nbr_philos == philo else "_" for i in range(nbr_philos)])
+
+        s += "," + ",".join([ADD_L if i == philo else ADD_R if (i + 1) % nbr_canaux == philo else "_" for i in range(nbr_canaux)]) + ">;\n"
         s += "\n"
     for i in range(nbr_philos):
-        s += "<" + ",".join(["goE" if j == i else "_" for j in range(nbr_philos)])
-        s += "," + ",".join(["remainNL" if (i - 1) == j else "remainNR" if i == j else "_" for j in range(nbr_canaux)]) + ">;\n"
+        s += "<" + ",".join([GO_E if j == i else "_" for j in range(nbr_philos)])
+        s += "," + ",".join([REMAIN_NL if (i - 1) % nbr_canaux == j else REMAIN_NR if i == j else "_" for j in range(nbr_canaux)]) + ">;\n"
     s += "\n"
     for i in range(nbr_philos):
-        s += "<" + ",".join(["goT" if j == i else "_" for j in range(nbr_philos)])
-        s += "," + ",".join(["delL" if (i - 1) == j else "delR" if i == j else "_" for j in range(nbr_canaux)]) + ">;\n"
+        s += "<" + ",".join([GO_T if j == i else "_" for j in range(nbr_philos)])
+        s += "," + ",".join([DEL_L if (i - 1) % nbr_canaux == j else DEL_R if i == j else "_" for j in range(nbr_canaux)]) + ">;\n"
+
     s += "};;\n"
     s+="todot verif_test_"+str(nbr_philos)+"_"+str(nbr_canaux)+".dot systeme;;\n"
     print(s)
