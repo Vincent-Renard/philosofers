@@ -10,7 +10,7 @@ if __name__ == '__main__':
         print("usage : ./gen_automate_XX.py n_philosophes [n_canaux (si non fourni -> n_canaux = nbr_philos+1)]")
         pass
     nbr_philos = int(argv[1])
-    nbr_canaux = nbr_philos
+    nbr_canaux = nbr_philos + 1
     if len(argv)>2:
         nbr_canaux =int(argv[2])
     cycle = nbr_canaux==nbr_philos+1
