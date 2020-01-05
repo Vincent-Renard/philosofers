@@ -1,0 +1,58 @@
+
+P = [T,H,E] {
+etat = 3;
+init = 0;
+0=T;
+1=H;
+2=E;
+0 -> 1 [Faim];
+1 -> 2 [Repas];
+2 -> 0 [Reflexion];
+0 -> 0 [remainT];
+1 -> 1 [remainHE];
+2 -> 2 [remainHE];
+};;
+
+C = [N,L,R] {
+etat = 3;
+init = 0;
+0=N;
+1=L;
+2=R;
+0 -> 1 [addL];
+0 -> 2 [addR];
+0 -> 0 [delL];
+1 -> 0 [delL];
+0 -> 0 [delR];
+2 -> 0 [delR];
+0 -> 0 [remainNL];
+1 -> 1 [remainNL];
+0 -> 0 [remainNR];
+2 -> 2 [remainNR];
+};;
+systeme = <P p0,P p1,P p2,C c0,C c1,C c2> {
+<Faim,remainT,remainT,_,_,_>;
+<Faim,remainHE,remainT,addL,_,_>;
+<Faim,remainT,remainHE,_,_,addR>;
+<Faim,remainHE,remainHE,addL,_,addR>;
+
+<remainT,Faim,remainT,_,_,_>;
+<remainT,Faim,remainHE,_,addL,_>;
+<remainHE,Faim,remainT,addR,_,_>;
+<remainHE,Faim,remainHE,addR,addL,_>;
+
+<remainT,remainT,Faim,_,_,_>;
+<remainHE,remainT,Faim,_,_,addL>;
+<remainT,remainHE,Faim,_,addR,_>;
+<remainHE,remainHE,Faim,_,addR,addL>;
+
+<Repas,_,_,remainNR,_,remainNL>;
+<_,Repas,_,remainNL,remainNR,_>;
+<_,_,Repas,_,remainNL,remainNR>;
+
+<Reflexion,_,_,delR,_,delL>;
+<_,Reflexion,_,delL,delR,_>;
+<_,_,Reflexion,_,delL,delR>;
+};;
+todot verif_test_3_3.dot systeme;;
+
