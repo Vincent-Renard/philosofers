@@ -9,7 +9,7 @@ if __name__ == '__main__':
         print("usage : ./gen_automate_XX.py n_philosophes ")
         pass
     nbr_philos = int(argv[1]) #TODO metre mode d'emploi si l'argument n'est pas fourni
-    nbr_canaux = nbr_philos - 1
+    nbr_canaux = nbr_philos
 
     GO_H = "Faim"
     GO_E = "Repas"
